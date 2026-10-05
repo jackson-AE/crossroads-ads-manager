@@ -1,0 +1,9 @@
+{
+  "name": "crossroads-ads-manager",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "check": "node check.js"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/ctc-ads-manager.html"
+    },
+    {
+      "source": "/ads-manager",
+      "destination": "/ctc-ads-manager.html"
+    }
+  ]
+}
