@@ -321,8 +321,8 @@
   <main class="workspace">
     <section class="filters" aria-label="Ads Manager filters">
       <div class="field">
-        <label for="platformFilter">Sources</label>
-        <select id="platformFilter"><option value="all">All sources</option></select>
+        <label for="platformFilter">Platform</label>
+        <select id="platformFilter"><option value="all">All platforms</option></select>
       </div>
       <div class="field hidden">
         <label for="funnelFilter">Funnel</label>
@@ -415,6 +415,7 @@ const CONFIG={
     {key:"Facebook",color:"var(--fb)",aliases:["facebook","fb","meta","instagram","ig"]},
     {key:"Organic",color:"#8b5cf6",aliases:["organic","website","direct"]},
     {key:"Email",color:"#eab308",aliases:["email"]},
+    {key:"Untracked",color:"#64748b",aliases:["blank","untracked","unattributed"]},
     {key:"Referral",color:"#22c55e",aliases:["affiliate","partner","referral"]}
   ],
   offers:[
@@ -536,7 +537,7 @@ function percent(value){return value==null?"-":(value*100).toFixed(2)+"%"}
 function roas(value){return value==null?"-":value.toFixed(2)+"x"}
 function mapPlatform(value){
   const source=String(value||"").toLowerCase();
-  if(!source)return "Unknown";
+  if(!source)return "Untracked";
   for(const platform of CONFIG.platforms){
     if(source===platform.key.toLowerCase()||platform.aliases.some(alias=>source===alias||source.includes(alias)))return platform.key;
   }
@@ -713,7 +714,7 @@ function populateOfferMenu(){
 function populateFilters(){
   const platforms=[...new Set(dataForCurrentOffer().map(row=>row.platform))].sort();
   if(state.platform!=="all"&&!platforms.includes(state.platform))state.platform="all";
-  $("platformFilter").innerHTML='<option value="all">All sources</option>'+
+  $("platformFilter").innerHTML='<option value="all">All platforms</option>'+ 
     platforms.map(value=>'<option value="'+esc(value)+'">'+esc(value)+'</option>').join("");
   $("platformFilter").value=state.platform;
 
